@@ -20,5 +20,5 @@ public class CitaRepository : GenericRepository<Cita>, ICita
                             .ToListAsync();
     }
 
-    
+
 }

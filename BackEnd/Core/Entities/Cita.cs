@@ -9,5 +9,4 @@ namespace Core.Entities;
         public Veterinario ? Veterinarios { get; set; }
 
         public ICollection<TratamientoMedico> ? TratamientoMedicos { get; set; }
-
-    }
+}

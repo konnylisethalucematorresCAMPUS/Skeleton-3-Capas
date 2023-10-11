@@ -1,12 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Core.Entities;
+using Core.Interfaces;
+using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Repository
+namespace Infrastructure.Repository;
+public class PropietarioRepository : GenericRepository<Propietario>, IPropietario
 {
-    public class PropietarioRepository
+    private readonly DbAppContext _Context;
+    public PropietarioRepository(DbAppContext context) : base(context)
     {
-        
+        _Context = context;
     }
+     public override async Task<IEnumerable<Propietario>> GetAllAsync()
+    {
+        return await _Context.Set<Propietario>()
+                            .Include(p => p.Mascotas)
+                            .ToListAsync();
+     }
 }

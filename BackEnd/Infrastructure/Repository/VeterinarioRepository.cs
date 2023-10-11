@@ -1,12 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Core.Entities;
+using Core.Interfaces;
+using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Repository
+namespace Infrastructure.Repository;
+public class VeterinarioRepository : GenericRepository<Veterinario>, IVeterinario
 {
-    public class VeterinarioRepository
+    private readonly DbAppContext _Context;
+    public VeterinarioRepository(DbAppContext context) : base(context)
     {
-        
+        _Context = context;
+    }
+    public override async Task<IEnumerable<Veterinario>> GetAllAsync()
+    {
+        return await _Context.Set<Veterinario>()
+                            .Include(p => p.Citas)
+                            .ToListAsync();
     }
 }
