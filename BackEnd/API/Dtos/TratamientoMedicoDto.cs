@@ -3,4 +3,5 @@ namespace API.Dtos;
     {
         public int Id { get; set; }
         public string ? Observacion { get; set; }
+        
     }

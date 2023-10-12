@@ -20,7 +20,8 @@ namespace API.Profiles;
                  .ReverseMap();
             CreateMap<CitaPostDto, Cita >()
                  .ReverseMap();
-            CreateMap<TratamientoMedicoDto, Cita >()
+
+            CreateMap<TratamientoMedicoDto, TratamientoMedico >()
                  .ReverseMap();
 
             // CreateMap<NombreDto2, NombreEntidad2>()
